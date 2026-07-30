@@ -1,1 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<info xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:noNamespaceSchemaLocation="https://apps.nextcloud.com/schema/apps/info.xsd">
+    <id>google_contact_sync</id>
+    <name>Google Contact Synchronization</name>
+    <summary>基于 Google People API 与 Nextcloud CardDAV 的单向通讯录全字段同步工具</summary>
+    <description><![CDATA[
+将已授权的 Google 账号通讯录单向同步到 Nextcloud 本地通讯录中。
+功能特点：
+- 支持 Google People API 的全字段解析与 vCard RFC 6350 规范映射（包含多段地址、公司、备注、头像等）。
+- 基于 Google SyncToken 的全自动增量同步，不冗余拉取不变数据。
+- 基于 Nextcloud Cron 的后台自动静默运行。
+    ]]></description>
 
+    <version>1.0.0</version>
+    <licence>agpl</licence>
+    <author>lostkitten</author>
+
+    <namespace>GoogleContactSync</namespace>
+
+    <category>integration</category>
+    <category>tools</category>
+
+    <dependencies>
+        <!-- Nextcloud 大版本范围限制 -->
+        <nextcloud>
+            <min-version>27</min-version>
+            <max-version>35</max-version>
+        </nextcloud>
+        <php>
+            <min-version>8.0</min-version>
+        </php>
+    </dependencies>
+
+    <background-jobs>
+        <job>OCA\GoogleContactSync\BackgroundJob\SyncJob</job>
+    </background-jobs>
+
+    <user-settings>
+
+    </user-settings>
+</info>
